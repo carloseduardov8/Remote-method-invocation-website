@@ -11,10 +11,14 @@
 
 .spaceTab {
 	display:inline-block; 
-	width: 40px;"
+	width: 40px;
 }
 
 .paragraphText {
 	text-align: justify;
 	text-justify: inter-word;
+}
+
+.listItems {
+	margin-left: 40px;
 }
