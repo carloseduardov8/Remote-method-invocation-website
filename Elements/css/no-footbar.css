@@ -2,9 +2,16 @@
 	height: 350px;
 }
 
+.size1 {
+	width: 50%;
+}
+
+.size2 {
+	width: 70%;
+}
+
 .quoteLine {
 	margin-top: -100px;
-	width: 50%;
 	margin: -20px auto 20px;
 	text-align: center;
 }

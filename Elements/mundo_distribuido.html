@@ -71,7 +71,7 @@
 							<h3>Sistemas Distribuídos</h3>
 							<p class="paragraphText"><span class="spaceTab"></span>Andrew Tanenbaum, prolífico autor da computação, propõe uma definição para sistemas distribuídos em seu livro
 							"Distributed Systems - Principles and Paradigms" (traduzida abaixo) que é bastante interessante para introduzirmos RMI:</p>
-							<div class="quoteLine">"Um sistema distribuído é uma coleção de computadores independentes que aparecem para seus usuários
+							<div class="quoteLine size1">"Um sistema distribuído é uma coleção de computadores independentes que aparecem para seus usuários
 							como um único sistema coerente."</div>
 							<p class="paragraphText"><span class="spaceTab"></span>Esta definição captura o espírito com o qual o RMI foi pensado: chamadas cujas características remotas são abstraídas para
 							o usuário, se comportando como se o processamento tivesse ocorrido localmente. Esta coerência em sistemas modernos é alcançada apenas implementando
@@ -91,8 +91,21 @@
 							<p class="paragraphText"><span class="spaceTab"></span>Conectar usuários e recursos facilita a colaboração e a troca de informações. Aplicações como
 							os e-commerces e os sistemas de e-mail são fortemente baseadas em sistemas distribuídos, ilustrando bem o poder deste leque de arquiteturas.</p>
 							
-							<h3>O Paradigma de Orientação a Objetos</h3>
-							<p class="paragraphText"><span class="spaceTab"></span>Insira o texto aqui.</p>
+							<h3>Compartilhando Recursos de Forma Segura</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>A palavra 'recursos' pode significar diversos itens: impressoras, computadores, armazenamento,
+							dados, arquivos, páginas da Web e redes são apenas alguns deles. Economicamente, faz sentido querer compartilhar periféricos custosos como supercomputadores
+							e sistemas de armazenamento de alta performance, e ferramentas seguras que possibilitam estas ações são altamente desejáveis. Com o crescimento da
+							conectividade das redes, torna-se cada vez mais necessário investir na segurança da comunicação entre os diversos dispositivos. De acordo com
+							Tanenbaum, novamente em seu livro "Distributed Systems - Principles and Paradigms" (traduzido abaixo), na prática, hoje em dia, muitos sistemas ainda possuem
+							mecanismos ineficientes de segurança:</p>
+							<div class="quoteLine size2">"Por exemplo, atualmente é possível encomendar mercadorias informando meramente os números de um cartão de crédito. É raro ser requerida uma prova
+							de que o cliente de fato é dono do cartão. No futuro, realizar pagamentos desta forma pode ser possível apenas se você conseguir provar que você de fato possui o cartão
+							fisicamente, ao [por exemplo] inseri-lo num leitor."</div>
+							<p class="paragraphText"><span class="spaceTab"></span>Apesar da ideia de Tanenbaum estar ainda longe da realidade, de fato ocorrem diversas falhas de segurança devido
+							à facilidade de se comprar produtos online através de cartões de crédito. Enquanto ainda é difícil garantir este tipo de infalibilidade, muito já foi feito
+							no que diz respeito à comunicação entre sistemas, levando em conta a tríade principal da segurança da informação: confidencialidade, integridade e disponibilidade.
+							Ao estudarmos RMI mais a fundo, veremos como alguns destes conceitos são implementados na troca de mensagens entre nossos recursos, na tentativa de proteger
+							nossas chamadas de ataques mal-intencionados.</p>
 						</section>
 								
 				</div>
