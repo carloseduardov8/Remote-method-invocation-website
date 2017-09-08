@@ -10,6 +10,10 @@
 	width: 70%;
 }
 
+.size3 {
+	width: 85%;
+}
+
 .quoteLine {
 	margin-top: -100px;
 	margin: -20px auto 20px;
@@ -28,4 +32,10 @@
 
 .listItems {
 	margin-left: 40px;
+}
+
+.centerImage {
+    margin-left: auto;
+    margin-right: auto;
+    width: 550px;
 }
