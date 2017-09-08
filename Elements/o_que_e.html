@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<link rel="stylesheet" href="css/no-footbar.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="index.html">Remote Method Invocation &nbsp&nbsp<span>GTA - UFRJ</span></a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Início</a></li>
+						<li><a href="mundo_distribuido.html">Um Mundo Distribuído</a></li>
+						<li><a href="o_que_e.html">O Que É RMI?</a></li>
+						<li><a href="rmi_x_rpc.html">RMI x RPC</a></li>
+						<li><a href="marshalling.html">Marshalling</a></li>
+						<li>
+							<a href="" class="icon fa-angle-down">Exemplos</a>
+							<ul>
+								<li><a href="como_usar.html">Como Usar</a></li>
+								<li><a href="experimentos.html">Experimentos</a></li>
+							</ul>
+						</li>
+						<li><a href="questoes.html">Questões</a></li>
+						<li><a href="bibliografia.html">Bibliografia</a></li>
+					</ul>
+				</nav>
+			</header>
+			
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+					<h2>O Que É RMI?</h2>
+					<p>A ferramente da linguagem Java para chamadas distribuídas</p>
+				</header>
+				<div class="container">
+						
+					<!-- Content -->
+						<section id="content">
+							<a href="#" class="image fit"><img src="images/java2.jpg" alt="" class="headerImage"/></a>
+							<h3>Introdução a Remote Method Invocation</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Apesar de RMI ser uma ferramenta nativamente de Java, a noção de
+							chamadas distribuídas a objetos foi originalmente pensada no middleware CORBA, uma arquitetura dos primórdios dos anos 1990.
+							A ideia principal, que perdurou ao longo das décadas, é poder invocar métodos cujas implementações se encontram em outra máquina,
+							efetivamente terceirizando o processamento e compartilhando os recursos disponíveis. Há diversos cuidados que devem ser levados em
+							conta, como, por exemplo, o modo de enviar os parâmetros à máquina de destino. O processo de empacotar tais dados ganhou o nome de
+							<i>marshalling</i>, sendo bastante importante na troca de informações.</p>
+
+							<h3>Interfaces em Java</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Java é uma linguagem fortemente tipada orientada a objetos com uma
+							sintaxe inspirada em C, possuindo uma interessante separação entre classes e interfaces, algo não oferecido pela maioria das
+							linguagens de programação. Em Java, uma interface descreve um conjunto de métodos para um objeto, mas não fornece nenhuma
+							implementação. Uma classe, por outro lado, pode descrever e implementar métodos, além de nos permitir incluir campos
+							para guardar dados, uma funcionalidade não oferecida por interfaces.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>Este distanciamento da noção de classes e interfaces nos permite
+							usufruir de um nível de abstração dificilmente observado em outros ambientes, sendo um convite para a implementação de
+							invocações distribuídas. Já é possível perceber que, para este leque de aplicações no qual estamos interessados, uma
+							interface nos possibilitará descrever de forma bastante abstrata métodos para objetos numa máquina A, enquanto as 
+							implementações ficarão a cargo de uma outra máquina B responsável por fornecer seus serviços a A.
+							<p class="paragraphText"><span class="spaceTab"></span>De forma ainda mais generalista, uma interface pode ser pensada como
+							um cartão de visitas que a máquina B (o servidor) distribuirá para todas as outras máquinas (os clientes) interessadas em utilisar seus serviços
+							que, ao invocados, serão inteiramente realizados por B mediante o envio dos parâmetros para o trabalho desejado. Ao final, B
+							responderá com seu resultado e o serviço terá sido terceirizado com sucesso.
+							
+							
+						</section>
+								
+				</div>
+			</section>	
+			
+			
+			
+		<!-- Footer -->
+			<footer id="footer">
+
+				<span class="copyright">
+						&copy; Copyright. All rights reserved. Template by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
+				</span>
+			</footer>
+
+	</body>
+</html>
