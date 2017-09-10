@@ -52,19 +52,32 @@
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>Bibliografia</h2>
+					<h2>RMI x RPC</h2>
+					<p>As diferenças entre computação distribuída funcional e orientada a objetos</p>
 				</header>
 				<div class="container">
 						
 					<!-- Content -->
 						<section id="content">
-							<h3>Os seguintes textos foram consultados para a confecção deste website:</h3>
-							<p class="paragraphText"><span class="spaceTab"></span>TANENBAUM, Andrew. VAN STEEN, Maarten. Sistemas Distribuídos – Princípios 
-							e Paradigmas. 2ª edição. Prentice Hall, 2008.</p>
-							<p class="paragraphText"><span class="spaceTab"></span>WOLLRATH, Ann. RIGGS, Roger. WALDO, Jim. A Distributed Object Model for the 
-							Java System. USENIX 1996 Conference on Object-Oriented Technologies. Toronto, Ontario, Canada, Junho de 1996.</p>
-							
-							
+							<a href="#" class="image fit"><img src="images/versus2.png" alt="" class="headerImage"/></a>
+							<h3>Uma Breve História das Chamadas Distribuídas</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Apesar do artigo de 1984 entitulado "Implementing Remote Procedure
+							Calls", de autoria de Andrew Birrell e Bruce Nelson, ter sido revolucionário para a área, a ideia de RPC é bastante antiga.
+							Discutida publicamente na literatura desde pelo menos 1976 e presente na própria tese de doutorado de Bruce Nelson, seu número
+							de implementações era altamente menor que seu número de teses. Sistemas desta natureza não eram exatamente comuns no início dos
+							anos 1980, e foi apenas com a publicação de tal artigo que os dois pesquisadores do Xerox Palo Alto Research Center (PARC) 
+							deram início a sua difusão. Anteriormente, a complexidade de tais arquiteturas explicava a dificuldade em engenheirar sistemas
+							de chamadas remotas. Entre os desafios encontrados, alguns se destacavam:</p>
+							<ul class="listItems">
+								<li>a especificação da semântica no caso de uma falha da máquina ou da comunicação;</li>
+								<li>a semântica para argumentos com endereços (ex.: ponteiros) num contexto de diferentes espaços de endereçamento;</li>
+								<li>integrar chamadas remotas a sistemas existentes e futuros;</li>
+								<li>a maneira que o cliente determina o endereço e a identidade do servidor;</li>
+								<li>necessidade de um protocolo para a transferência e controle de dados entre as duas partes;</li>
+								<li>e como prover, caso desejado, integridade dos dados e segurança em um ambiente de comunicação aberta.</li>
+							</ul>
+							<p class="paragraphText"><span class="spaceTab"></span>No artigo em questão, apesar de não entrarem em detalhes, os autores
+							descrevem uma abordagem para cada um destes desafios, abrindo espaço para uma grande quantidade de avanços que vieram posteriormente.</p>
 						</section>
 								
 				</div>
