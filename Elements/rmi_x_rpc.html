@@ -77,7 +77,25 @@
 								<li>e como prover, caso desejado, integridade dos dados e segurança em um ambiente de comunicação aberta.</li>
 							</ul>
 							<p class="paragraphText"><span class="spaceTab"></span>No artigo em questão, apesar de não entrarem em detalhes, os autores
-							descrevem uma abordagem para cada um destes desafios, abrindo espaço para uma grande quantidade de avanços que vieram posteriormente.</p>
+							descrevem uma abordagem para cada um destes desafios, abrindo espaço para uma grande quantidade de avanços que viriam posteriormente.
+							Por exemplo, para o problema de falhas, os autores propuseram uma sondagem, realizada por um <i>"probe packet"</i>, através do qual o
+							cliente sonda periodicamente o servidor para saber se sua chamada remota está sendo processada como previsto. Em geral, o ambiente
+							de chamadas remotas estava começando a ser consolidado, ao mesmo tempo em que um outro paradigma surgia no horizonte.</p>
+							
+							<h3>O Paradigma de Orientação a Objetos</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Por muitos anos, o paradigma procedural reinou nas linguagens de programação. Seu
+							funcionamento, como descrito por Bjarne Stroustrup, criador da linguagem C++, em seu artigo <i>"What is "Object-Oriented Programming"? 
+							(1991 revised version)"</i> (traduzido abaixo), pode ser resumido através da seguinte máxima:</p>
+							<div class="quoteLine size3">"Decida quais procedimentos você quer; use os melhores algoritmos que você encontrar."</div>
+							<p class="paragraphText"><span class="spaceTab"></span>Para Stroustrup, olhando por um ponto de vista organizacional de programa, as funções
+							são usadas para criar ordem em um labirinto de algoritmos. Seria necessário, portanto, esconder dados dependendo do nível de abstração que
+							se deseje utilizar em diferentes momentos na formulação de um programa. Deveríamos, portanto, agrupar as diferentes componentes que participam
+							da resolução de nossos problemas em módulos, com os quais interagiríamos através de métodos cujas implementações, dado um grau de abstração alto
+							o suficiente, não interessariam desde que fossem minimamente eficientes. Assim, deveríamos trocar nossa máxima para:
+							<div class="quoteLine size3">"Decida quais módulos você quer; particione o programa para que os dados fiquem escondidos em módulos."</div>
+							<p class="paragraphText"><span class="spaceTab"></span>Apesar desta não ser a única premissa desse novo paradigma, a descrição acima caracteriza
+							bem a essência de abstração dessa nova maneira de pensar e nos dá bagagem suficiente para entendermos as diferenças principais entre o RPC, proposto nos
+							anos 1980, e o RMI, idealizado nos anos 1990 já sob esta nova ótica de estruturação de dados.
 						</section>
 								
 				</div>
@@ -89,7 +107,7 @@
 			<footer id="footer">
 
 				<span class="copyright">
-						&copy; Copyright. All rights reserved. Template by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
+						&copy; áéçãêõíóú Copyright. All rights reserved. Template by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
 				</span>
 			</footer>
 
