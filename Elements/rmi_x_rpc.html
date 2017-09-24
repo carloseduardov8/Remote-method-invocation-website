@@ -91,11 +91,30 @@
 							são usadas para criar ordem em um labirinto de algoritmos. Seria necessário, portanto, esconder dados dependendo do nível de abstração que
 							se deseje utilizar em diferentes momentos na formulação de um programa. Deveríamos, portanto, agrupar as diferentes componentes que participam
 							da resolução de nossos problemas em módulos, com os quais interagiríamos através de métodos cujas implementações, dado um grau de abstração alto
-							o suficiente, não interessariam desde que fossem minimamente eficientes. Assim, deveríamos trocar nossa máxima para:
+							o suficiente, não interessariam desde que fossem minimamente eficientes. Assim, deveríamos trocar nossa máxima para:</p>
 							<div class="quoteLine size3">"Decida quais módulos você quer; particione o programa para que os dados fiquem escondidos em módulos."</div>
 							<p class="paragraphText"><span class="spaceTab"></span>Apesar desta não ser a única premissa desse novo paradigma, a descrição acima caracteriza
 							bem a essência de abstração dessa nova maneira de pensar e nos dá bagagem suficiente para entendermos as diferenças principais entre o RPC, proposto nos
-							anos 1980, e o RMI, idealizado nos anos 1990 já sob esta nova ótica de estruturação de dados.
+							anos 1980, e o RMI, idealizado nos anos 1990 já sob esta nova ótica de estruturação de dados.</p>
+							
+							<h3>Semelhanças Entre os Modelos</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Apesar de haver um considerável número de diferenças entre os dois modelos de computação 
+							distribuída, muitos dos conceitos básicos se repetem em ambos os paradigmas. O diagrama arquitetural de alto nível, por exemplo, é comum tanto ao
+							RPC quanto ao RMI. Dessa forma, mesmo havendo diferenças acentuadas na implementação de cada um dos dois sistemas distribuídos, sua finalidade comum
+							acaba levando a um diagrama unificado, que traduz os objetivos de ambos os modelos:</p>
+							<div class="4u 6u(3) centerImage"><span class=" image fit"><img src="images/rpc_architecture.gif" class="size1" alt="" /></span></div>
+							<br>
+							<p class="paragraphText"><span class="spaceTab"></span>Pela figura, podemos apontar também como semelhança o fato de ambos trabalharem com uma interface.
+							As partes inferiores do diagrama são invisíveis ao programador, que só precisa se preocupar com uma chamada de função ou a invocação de um método.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>A fim de contribuir ainda mais para a transparência, ambos os modelos empregam sintaxes semelhantes entre
+							chamadas locais e chamadas remotas. Não é necessário utilizar construções verborrágicas e redundantes ao requisitar um recurso remoto que, no fim, está
+							a apenas uma chamada de distância. As semânticas que os protocolos implementam também são similares. Por exemplo, as de <i>pelo-menos-uma-vez</i> e de 
+							<i>no-máximo-uma vez</i> são suportadas em ambos os modelos.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>No fim, chegamos à conclusão de que RMI e RPC são duas formas diferentes de alcançar o mesmo objetivo.
+							Apesar de RPC ser mais antiquado e de que o futuro provavelmente seguirá a onda RMI, o uso de cada uma das técnicas depende de fatores como o paradigma sob o qual
+							o programa é planejado e a relevância de se manter o código um pouco mais limpo. Utilizar um dos modelos é, portanto, uma decisão de projeto, que precisará optar
+							por uma dessas duas ferramentas que tanto impulsionaram a computação distribuída nas últimas décadas.
+							<br>
 						</section>
 								
 				</div>
