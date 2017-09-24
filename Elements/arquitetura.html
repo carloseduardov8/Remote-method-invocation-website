@@ -74,7 +74,20 @@
 							fato, veremos que cada uma das três camadas apresentadas acima é responsável por basicamente uma dessas atribuições.</p>
 							
 							<h3>Camada de Stub/Esqueleto</h3>
-							<p class="paragraphText"><span class="spaceTab"></span>No artigo 
+							<p class="paragraphText"><span class="spaceTab"></span>A camada que realiza a interface entre a aplicação e o restante do sistema RMI é chamada de
+							<i>stub</i>/esqueleto. Sua responsabilidade é transmitir dados para a camada de referenciamento remoto através da abstração de <i>marshal streams</i>.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>A palavra <b>marshalling</b>, em ciência da computação, representa o processo de transformar as informações 
+							de um objeto encontrado na memória para uma representação de dados que seja mais adequada para finalidades de, em geral, armazenamento ou tráfego. Há muitas similaridades com a serialização
+							de um objeto, ou seja, transformar estruturas de dados em uma sequência de bits que podem ser posteriormente reconstruídos, mas utilizamos o termo <i>marshalling</i> para especificamente nos 
+							referir a objetos remotos. Tipicamente, implementamos as técnicas desta área para mover dados de um programa para o outro, que podem ou não estar na mesma máquina.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>Dessa forma, um <b>marshal stream</b> do RMI se preocupa exatamente com esta conversão de dados para um formato trafegável na rede e possível de ser posteriormente reconstruído, levando
+							ainda em consideração os diferentes espaços de endereçamento no qual os objetos se encontram. Vale lembrar que esta não é uma tarefa fácil: por exemplo, a codificação de bits na memória em diferentes máquinas
+							pode variar. Codificações <i>big-endian</i> (bit <i>mais</i> significativo é guardado no menor endereço, implementado na arquitetura Intel x86) e <i>little-endian</i> (bit <i>menos</i> significativo é guardado 
+							no menor endereço, implementado em algumas arquiteturas da IBM) são uma das dificuldades que os projetistas devem ter em mente ao propor um sistema.</p>
+							<div class="4u 6u(3) centerImage size1"><span class=" image fit"><img src="images/endian.png" alt="" /></span></div>
+							<br>
+							<p class="paragraphText"><span class="spaceTab"></span>Por fim, devemos nos atentar para o fato da camada stub/esqueleto ter funções distintas entre o cliente e o servidor, levando
+							à diferenciação do nome <b>stub</b> para o cliente e <b>esqueleto</b> para o servidor. Por exemplo, uma cada stub do lado do cliente é responsável por:</p>
 						</section>
 								
 				</div>
