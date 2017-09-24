@@ -87,7 +87,26 @@
 							<div class="4u 6u(3) centerImage size1"><span class=" image fit"><img src="images/endian.png" alt="" /></span></div>
 							<br>
 							<p class="paragraphText"><span class="spaceTab"></span>Por fim, devemos nos atentar para o fato da camada stub/esqueleto ter funções distintas entre o cliente e o servidor, levando
-							à diferenciação do nome <b>stub</b> para o cliente e <b>esqueleto</b> para o servidor. Por exemplo, uma cada stub do lado do cliente é responsável por:</p>
+							à diferenciação do nome <b>stub</b> para o cliente e <b>esqueleto</b> para o servidor. Por exemplo, um stub do lado do cliente é responsável por:</p>
+							<ul class="listItems">
+								<li>iniciar uma chamada para o objeto remoto (chamando a camada de referenciamento remoto);</li>
+								<li>fazer <i>marhsalling</i> dos argumentos para um <i>marshal stream</i>;</li>
+								<li>informar à camada de referenciamento remoto que a chamada deve ser invocada;</li>
+								<li>fazer <i>unmarshalling</i> do valor de retorno contido em um marshal stream;</li>
+								<li>informar à camada de referenciamento remoto que a chamada foi completada;</li>
+							</ul>
+							<p class="paragraphText"><span class="spaceTab"></span>Por outro lado, um esqueleto é uma entidade existente no lado do servidor que contém um método que despacha chamadas
+							para a implementação do objeto remoto. Suas responsabilidades, portanto, são:
+							<ul class="listItems">
+								<li>fazer <i>unmarshalling</i> dos argumentos contidos em <i>marshal streams</i>;
+								<li>realizar a chamada para a verdadeira implementação do objeto remoto;
+								<li>fazer <i>marshalling</i> do valor de retorno de uma chamada para um <i>marshal stream</i>;
+							</ul>
+							<p class="paragraphText"><span class="spaceTab"></span>Juntas, essas duas entidades formam a camada <i>stub</i>/esqueleto e entregam um grande poder de abstração para o programador,
+							servindo como valiosas interfaces no sistema RMI.</p>
+							
+							<h3>Camada de Referenciamento Remoto</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>A camada
 						</section>
 								
 				</div>
