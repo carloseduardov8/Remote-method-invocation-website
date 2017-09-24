@@ -103,7 +103,8 @@
 							de orientação a objetos. O RPC trabalha com funções, enquanto o RMI vive de métodos pertencentes a objetos.</p>
 							<p class="paragraphText"><span class="spaceTab"></span>Além desta diferença básica, há a distinção de linguagens. Apesar de ser implementada em mais de
 							uma linguagem, a técnica de Remote Procedure Call é baseada em C, herdando sua estruturação básica. RMI, por outro lado, foi desenvolvido exclusivamente para Java e usa
-							sua respectiva máquina virtual (Java Virtual Machine - JVM).</p>
+							sua respectiva máquina virtual (Java Virtual Machine - JVM). As semânticas que os protocolos implementam também têm suas peculiaridades: enquanto o RPC incorpora
+							semânticas como "<i>no-máximo-uma vez</i>" ou "<i>pelo-menos-uma-vez</i>", o RMI apenas implementa "<i>no-máximo-uma vez</i>".</p></p>
 							<p class="paragraphText"><span class="spaceTab"></span>Apesar da implementação das duas técnicas também ser muito diferente, a última distinção que vale a pena
 							ser notada é o fato de que RMI, por ser inspirado por este paradigma de orientação a objetos, ajuda a deixar o código dos programas mais limpo. Se, por exemplo,
 							um objeto muda de classe, o programa continua funcionando normalmente desde que os mesmos métodos da classe anterior estejam implementados. Um exemplo é uma troca
@@ -117,11 +118,9 @@
 							<div class="4u 6u(3) centerImage"><span class=" image fit"><img src="images/rpc_architecture.gif" class="size1" alt="" /></span></div>
 							<br>
 							<p class="paragraphText"><span class="spaceTab"></span>Pela figura, podemos apontar também como semelhança o fato de ambos trabalharem com uma interface.
-							As partes inferiores do diagrama são invisíveis ao programador, que só precisa se preocupar com uma chamada de função ou a invocação de um método.</p>
-							<p class="paragraphText"><span class="spaceTab"></span>A fim de contribuir ainda mais para a transparência, ambos os modelos empregam sintaxes semelhantes entre
-							chamadas locais e chamadas remotas. Não é necessário utilizar construções verborrágicas e redundantes ao requisitar um recurso remoto que, no fim, está
-							a apenas uma chamada de distância. As semânticas que os protocolos implementam também são similares. Por exemplo, as de <i>pelo-menos-uma-vez</i> e de 
-							<i>no-máximo-uma vez</i> são suportadas em ambos os modelos.</p>
+							As partes inferiores do diagrama são invisíveis ao programador, que só precisa se preocupar com uma chamada de função ou a invocação de um método. A fim de 
+							contribuir ainda mais para a transparência, ambos os modelos empregam sintaxes semelhantes entre chamadas locais e chamadas remotas. Não é necessário utilizar 
+							construções verborrágicas e redundantes ao requisitar um recurso remoto que, no fim, está a apenas uma chamada de distância.</p>
 							<p class="paragraphText"><span class="spaceTab"></span>No fim, chegamos à conclusão de que RMI e RPC são duas formas diferentes de alcançar o mesmo objetivo.
 							Apesar de RPC ser mais antiquado e de que o futuro provavelmente seguirá a onda RMI, o uso de cada uma das técnicas depende de fatores como o paradigma sob o qual
 							o programa é planejado e a relevância de se manter o código um pouco mais limpo. Utilizar um dos modelos é, portanto, uma decisão de projeto, que precisará optar

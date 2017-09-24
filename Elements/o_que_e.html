@@ -106,6 +106,22 @@
 							servidor não irá alterar o objeto original no lado do cliente. Caso haja interesse, será necessário enviar a versão alterada de volta ao cliente para este
 							decidir o que fazer com esta cópia.
 							</p>
+							
+							<h3>Semântica</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>No contexto de chamadas distribuídas, é comum que queiramos uma certa consistência em nossos sistemas. Para
+							isso, é necessário adotar um modelo com uma dada semântica. Uma ideia muito básica, por exemplo, é a semântica "<i>talvez</i>": se implementarmos algo do tipo, nosso
+							sistema não se preocupará com possíveis falhas e, consequentemente, nossa chamada terá sido <i>talvez</i> executada no servidor. O importante de ser
+							entendido é que, em consequência do modelo que adotamos, não há garantias sobre o sucesso de nossas chamadas e nem sobre quantas vezes ela terá sido executada no destino.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>O Java RMI, por sua vez, implementa uma semântica chamada "<i>no-máximo-uma-vez</i>". Isto quer dizer que, quando uma
+							invocação de um método remoto é feito, o invocador acaba com uma das seguintes respostas:</p>
+							<ul class="listItems">
+								<li>um <b>resultado</b>, o que garantirá que o método foi executado exatamente uma vez no servidor;</li>
+								<li>ou uma <b>exceção</b>, informando que nenhum resultado foi recebido. Neste caso, o método terá sido executado no servidor ou uma vez ou nenhuma vez.</li>
+							</ul>
+							<p class="paragraphText"><span class="spaceTab"></span>O segundo caso, em que uma falha ocorre, não nos dá nenhuma informação sobre o que de fato aconteceu ou
+							sobre quando exatamente o erro foi encontrado. É graças à garantia da semântica "<i>no-máximo-uma-vez</i>" que podemos, por exemplo, ter a certeza de que nossa 
+							invocação jamais terá sido executada duas vezes por acidente no destino. Modelos como esse ajudam a contornar possíveis erros, evitando que o sistema como um todo
+							acabe tendo que parar.</p>
 						</section>
 								
 				</div>
