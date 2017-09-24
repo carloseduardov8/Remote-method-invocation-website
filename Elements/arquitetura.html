@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title> </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<link rel="stylesheet" href="css/no-footbar.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="index.html">Remote Method Invocation &nbsp&nbsp<span>GTA - UFRJ</span></a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Início</a></li>
+						<li><a href="mundo_distribuido.html">Um Mundo Distribuído</a></li>
+						<li><a href="o_que_e.html">O Que É RMI?</a></li>
+						<li><a href="rmi_x_rpc.html">RMI x RPC</a></li>
+						<li><a href="arquitetura.html">Arquitetura</a></li>
+						<li>
+							<a href="" class="icon fa-angle-down">Exemplos</a>
+							<ul>
+								<li><a href="como_usar.html">Como Usar</a></li>
+								<li><a href="experimentos.html">Experimentos</a></li>
+							</ul>
+						</li>
+						<li><a href="questoes.html">Questões</a></li>
+						<li><a href="bibliografia.html">Bibliografia</a></li>
+					</ul>
+				</nav>
+			</header>
+			
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+					<h2>Arquitetura</h2>
+					<p>A forma como o RMI é estruturado</p>
+				</header>
+				<div class="container">
+						
+					<!-- Content -->
+						<section id="content">
+							<a href="#" class="image fit"><img src="images/marshall.jpg" alt="" class="headerImage"/></a>
+							<h3>Visão Geral</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>No artigo original que introduziu o RMI ao mundo, entitulado "A Distributed 
+							Object Model for the Java System", os autores dedicam aproximadamente 4 páginas para descrever, em alto nível, a estruturação básica 
+							da arquitetura do modelo. De maneira geral, um sistema RMI é dividido em três camadas: a de <i><b>stub</i>/esqueleto</b>, a de
+							<b>referencimento remoto</b> e a de <b>transporte</b>. O diagrama abaixo pode nos ajudar a entender melhor esta arrumação.</p>
+							<div class="4u 6u(3) centerImage"><span class=" image fit"><img src="images/arquitetura_geral.png" class="size1" alt="" /></span></div>
+							<br>
+							<p class="paragraphText"><span class="spaceTab"></span>Uma invocação remota de um cliente para um servidor viaja de cima para baixo nas camadas do cliente
+							até chegar à de transporte, que por sua vez leva os dados para o servidor. A invocação, então, viaja de baixo para cima até ser processada. O trabalho
+							das diferentes camadas é descrito com mais detalhes abaixo, mas já podemos imaginar que, para que o nosso sistema funcione, precisaremos de uma camada
+							que nos dê a interface do objeto remoto, outra que cuide das semânticas de nossa transação e, por fim, uma camada que gerencie a conexão do modelo. De
+							fato, veremos que cada uma das três camadas apresentadas acima é responsável por basicamente uma dessas atribuições.</p>
+							
+							<h3>Camada de Stub/Esqueleto</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>No artigo 
+						</section>
+								
+				</div>
+			</section>	
+			
+			
+			
+		<!-- Footer -->
+			<footer id="footer">
+
+				<span class="copyright">
+						&copy; Copyright. All rights reserved. Template by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
+				</span>
+			</footer>
+
+	</body>
+</html>
