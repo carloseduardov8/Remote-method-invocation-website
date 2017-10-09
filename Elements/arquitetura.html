@@ -48,7 +48,7 @@
 					</ul>
 				</nav>
 			</header>
-			
+
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<header class="major">
@@ -56,13 +56,13 @@
 					<p>A forma como o RMI é estruturado</p>
 				</header>
 				<div class="container">
-						
+
 					<!-- Content -->
 						<section id="content">
 							<a href="#" class="image fit"><img src="images/marshall.jpg" alt="" class="headerImage"/></a>
 							<h3>Visão Geral</h3>
-							<p class="paragraphText"><span class="spaceTab"></span>No artigo original que introduziu o RMI ao mundo, entitulado "A Distributed 
-							Object Model for the Java System", os autores dedicam aproximadamente 4 páginas para descrever, em alto nível, a estruturação básica 
+							<p class="paragraphText"><span class="spaceTab"></span>No artigo original que introduziu o RMI ao mundo, entitulado "A Distributed
+							Object Model for the Java System", os autores dedicam aproximadamente 4 páginas para descrever, em alto nível, a estruturação básica
 							da arquitetura do modelo. De maneira geral, um sistema RMI é dividido em três camadas: a de <i><b>stub</i>/esqueleto</b>, a de
 							<b>referencimento remoto</b> e a de <b>transporte</b>. O diagrama abaixo pode nos ajudar a entender melhor esta arrumação.</p>
 							<div class="4u 6u(3) centerImage"><span class=" image fit"><img src="images/arquitetura_geral.png" class="size1" alt="" /></span></div>
@@ -72,17 +72,17 @@
 							das diferentes camadas é descrito com mais detalhes abaixo, mas já podemos imaginar que, para que o nosso sistema funcione, precisaremos de uma camada
 							que nos dê a interface do objeto remoto, outra que cuide das semânticas de nossa transação e, por fim, uma camada que gerencie a conexão do modelo. De
 							fato, veremos que cada uma das três camadas apresentadas acima é responsável por basicamente uma dessas atribuições.</p>
-							
+
 							<h3>Camada de Stub/Esqueleto</h3>
 							<p class="paragraphText"><span class="spaceTab"></span>A camada que realiza a interface entre a aplicação e o restante do sistema RMI é chamada de
 							<i>stub</i>/esqueleto. Sua responsabilidade é transmitir dados para a camada de referenciamento remoto através da abstração de <i>marshal streams</i>.</p>
-							<p class="paragraphText"><span class="spaceTab"></span>A palavra <b>marshalling</b>, em ciência da computação, representa o processo de transformar as informações 
+							<p class="paragraphText"><span class="spaceTab"></span>A palavra <b>marshalling</b>, em ciência da computação, representa o processo de transformar as informações
 							de um objeto encontrado na memória para uma representação de dados que seja mais adequada para finalidades de, em geral, armazenamento ou tráfego. Há muitas similaridades com a serialização
-							de um objeto, ou seja, transformar estruturas de dados em uma sequência de bits que podem ser posteriormente reconstruídos, mas utilizamos o termo <i>marshalling</i> para especificamente nos 
+							de um objeto, ou seja, transformar estruturas de dados em uma sequência de bits que podem ser posteriormente reconstruídos, mas utilizamos o termo <i>marshalling</i> para especificamente nos
 							referir a objetos remotos. Tipicamente, implementamos as técnicas desta área para mover dados de um programa para o outro, que podem ou não estar na mesma máquina.</p>
 							<p class="paragraphText"><span class="spaceTab"></span>Dessa forma, um <b>marshal stream</b> do RMI se preocupa exatamente com esta conversão de dados para um formato trafegável na rede e possível de ser posteriormente reconstruído, levando
 							ainda em consideração os diferentes espaços de endereçamento no qual os objetos se encontram. Vale lembrar que esta não é uma tarefa fácil: por exemplo, a codificação de bits na memória em diferentes máquinas
-							pode variar. Codificações <i>big-endian</i> (bit <i>mais</i> significativo é guardado no menor endereço, implementado na arquitetura Intel x86) e <i>little-endian</i> (bit <i>menos</i> significativo é guardado 
+							pode variar. Codificações <i>big-endian</i> (bit <i>mais</i> significativo é guardado no menor endereço, implementado na arquitetura Intel x86) e <i>little-endian</i> (bit <i>menos</i> significativo é guardado
 							no menor endereço, implementado em algumas arquiteturas da IBM) são uma das dificuldades que os projetistas devem ter em mente ao propor um sistema.</p>
 							<div class="4u 6u(3) centerImage size1"><span class=" image fit"><img src="images/endian.png" alt="" /></span></div>
 							<br>
@@ -98,22 +98,44 @@
 							<p class="paragraphText"><span class="spaceTab"></span>Por outro lado, um esqueleto é uma entidade existente no lado do servidor que contém um método que despacha chamadas
 							para a implementação do objeto remoto. Suas responsabilidades, portanto, são:
 							<ul class="listItems">
-								<li>fazer <i>unmarshalling</i> dos argumentos contidos em <i>marshal streams</i>;
-								<li>realizar a chamada para a verdadeira implementação do objeto remoto;
-								<li>fazer <i>marshalling</i> do valor de retorno de uma chamada para um <i>marshal stream</i>;
+								<li>fazer <i>unmarshalling</i> dos argumentos contidos em <i>marshal streams</i>;</li>
+								<li>realizar a chamada para a verdadeira implementação do objeto remoto;</li>
+								<li>fazer <i>marshalling</i> do valor de retorno de uma chamada para um <i>marshal stream</i>;</li>
 							</ul>
 							<p class="paragraphText"><span class="spaceTab"></span>Juntas, essas duas entidades formam a camada <i>stub</i>/esqueleto e entregam um grande poder de abstração para o programador,
 							servindo como valiosas interfaces no sistema RMI.</p>
-							
+
 							<h3>Camada de Referenciamento Remoto</h3>
-							<p class="paragraphText"><span class="spaceTab"></span>A camada
+							<p class="paragraphText"><span class="spaceTab"></span>Tendo estabelecido uma interface, precisamos agora de uma camada que se comunique com as funções de transporte de baixo nível.
+                            Além disso, nossa Camada de Referenciamento Remoto deve ser responsável por <b>implementar um protocolo de invocação</b> que seja independente do <i>stub</i> do cliente e do esqueleto
+                            do servidor. A ideia é que cada objeto remoto escolha seu próprio protocolo de invocação, que será fixo por toda a vida do objeto. Alguns exemplos de protocolo são:</p>
+                            <ul class="listItems">
+                                <li>invocação <i>unicast</i>;</li>
+                                <li>invocação <i>multicast</i>;</li>
+                                <li>suporte para uma estratégia de replicação específica;</li>
+                                <li>estratégias de reconexão (caso o objeto remoto se torne inacessível).</li>
+                            </ul>
+                            <p class="paragraphText"><span class="spaceTab"></span>Tais protocolos não são mutualmente exclusivos e podem ser combinados. Por exemplo, um objeto remoto pode requerer uma invocação unicast
+                            junto com uma estratégia de reconexão específica, e ambos os procedimentos seriam implementados pela Camada de Referenciamento Remoto. Portanto, resta agora entender como o funcionamento de tais implementações
+                            funcionam de uma maneira geral no sistema RMI.</p>
+                            <p class="paragraphText"><span class="spaceTab"></span>Um protocolo de invocação é dividido em duas partes que cooperam entre si, sendo uma situada no lado do cliente e, a outra, no do servidor. A parte
+                            no lado do cliente possui informações específicas do servidor remoto (ou servidores, caso a invocação seja destinada a um grupo <i>multicast</i>) e se comunica através da camada de transporte com a componente
+                            no lado do servidor. A seguir, vamos observar como ambos os lados utilizam esta oportunidade para intervir no processo de invocação e garantir as semânticas corretas de cada transação.</p>
+                            <p class="paragraphText"><span class="spaceTab"></span>Suponha, por exemplo, que um objeto remoto seja parte de um grupo <i>multicast</i>. Neste caso, a Camada de Referenciamento Remoto do lado do cliente intervém
+                            e encaminha a invocação para um grupo ao invés de um único objeto remoto. De forma similar, a componente do lado do servidor também possui uma chance de intervenção antes de entregar uma invocação remota para o esqueleto,
+                            podendo, por exemplo, garantir uma entrega <i>multicast</i> atômica ao se comunicar com outras réplicas no grupo e utilizar algum algoritmo de coordenação. Assim, concluímos que nossa camada intermediária se torna
+                            essencial para garantir as diversas necessidades semânticas do sistema RMI.</p>
+
+                            <h3>Camada de Transporte</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Chegamos então
+
 						</section>
-								
+
 				</div>
-			</section>	
-			
-			
-			
+			</section>
+
+
+
 		<!-- Footer -->
 			<footer id="footer">
 
