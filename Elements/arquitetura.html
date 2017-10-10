@@ -136,8 +136,15 @@
                                 <li>manter uma tabela de objetos remotos que vivem no espaço de endereçamento local;</li>
                                 <li>configurar uma conexão para realizar uma nova chamada.</li>
                             </ul>
-                            <p class="paragraphText"><span class="spaceTab"></span>En
-
+                            <p class="paragraphText"><span class="spaceTab"></span>Uma grande parte da implementação desta camada é inspirada no sistema de transporte de objetos da linguagem Modula-3, uma ferramenta desenvolvida nos anos 80 com suporte 
+							a orientação a objetos que, mesmo tendo influenciado muitas outras linguagens (como Java e C#), nunca foi adotada na indústria de forma considerável. Baseando-nos neste sistema, podemos subdividir nossa camada de transporte em quatro abstrações básicas: 
+							<i>endpoints</i>, transporte, canal e conexão.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>Um <b><i>endpoint</i></b> indica um espaço de endereçamento, que pode então ser mapeado para seu transporte. Assim, dado um <i>endpoint</i>, uma instância específica de transporte pode ser obtida.
+							Por sua vez, a abstração de <b>transporte</b> gerencia <b>canais</b>, que nada mais são do que conexões virtuais entre dois espaços de endereçamento. Em um único transporte, existe um canal para cada par de espaços de endereçamento (local e remoto). Além disso, o
+							transporte também fica responsável por aceitar e realizar as diversas chamadas entre servidor e cliente. Por fim, uma <b>conexão</b> será a nossa abstração para a transferência de dados (realizando <i>input</i> e <i>output</i>). Existe ainda a possibilidade de haver 
+							diferentes transportes entre os mesmos espaços de endereçamento, o que nos permite, por exemplo, ter suporte simultâneo a TCP e UDP entre as mesmas duas máquinas.</p>
+							<p class="paragraphText"><span class="spaceTab"></span>Isto conclui nossa análise da arquitetura do sistema RMI. Para mais informações, o artigo de <i>Jim Waldo et al.</i>, entitulado <i>"A Distributed Object Model for the Java System"</i>, entra em maiores detalhes arquiteturais acerca do RMI.</p>
+							
 						</section>
 
 				</div>
