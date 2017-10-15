@@ -69,8 +69,56 @@
 							<div class="4u 6u(3) centerImage size1"><span class=" image fit"><img src="images/computadores.png" class="" alt="" /></span></div>
 							<br>
 							
-							<h3>Velocidade</h3>
-							<p class="paragraphText"><span class="spaceTab"></span>Ao 
+							<h3>Tempo de Invocação</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Para avaliarmos o tempo que o sistema RMI leva para realizar suas invocações, criamos um método de "somar <i>offset</i>" na
+							máquina servidor que será invocado pela máquina cliente. Como parâmetros da chamada, iremos enviar um <i>array</i> de <i>floats</i>, seu tamanho e um <i>offset</i>, o qual deverá ser somado a todos os
+							elementos do <i>array</i>. Foram utilizadas 4 <i>threads</i> para subdividir o <i>array</i> e realizar 4 invocações simultâneas, cada uma em 1/4 do <i>array</i>; o tempo medido para cada iteração é, portanto, a diferença entre o horário 
+							de início da primeira <i>thread</i> e o horário de retorno da última delas.</p>
+							
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Tamanho do <i>Array</i> (elementos)</th>
+											<th>Tamanho do <i>Array</i> (bytes)</th>
+											<th>Média de 8 invocações (segundos)</th>
+											<th>Desvio Padrão (segundos)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1.000</td>
+											<td>4 KB</td>
+											<td>0,03324</td>
+											<td>0,02036</td>
+										</tr>
+										<tr>
+											<td>10.000</td>
+											<td>40 KB</td>
+											<td>0,07359</td>
+											<td>0,01165</td>
+										</tr>
+										<tr>
+											<td>100.000</td>
+											<td>400 KB</td>
+											<td>0,64190</td>
+											<td>0,13845</td>
+										</tr>
+										<tr>
+											<td>1.000.000</td>
+											<td>4 MB</td>
+											<td>6,43782</td>
+											<td>0,36490</td>
+										</tr>
+										<tr>
+											<td>10.000.000</td>
+											<td>40 MB</td>
+											<td>59,86252</td>
+											<td>3,37119</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</section>
 
 				</div>
