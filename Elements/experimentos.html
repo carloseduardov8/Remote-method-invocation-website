@@ -36,13 +36,7 @@
 						<li><a href="o_que_e.html">O Que É RMI?</a></li>
 						<li><a href="rmi_x_rpc.html">RMI x RPC</a></li>
 						<li><a href="arquitetura.html">Arquitetura</a></li>
-						<li>
-							<a href="" class="icon fa-angle-down">Exemplos</a>
-							<ul>
-								<li><a href="como_usar.html">Como Usar</a></li>
-								<li><a href="experimentos.html">Experimentos</a></li>
-							</ul>
-						</li>
+						<li><a href="experimentos.html">Experimentos</a></li>
 						<li><a href="questoes.html">Questões</a></li>
 						<li><a href="bibliografia.html">Bibliografia</a></li>
 					</ul>
@@ -65,7 +59,7 @@
 							utilizamos a mesma máquina para atuar, simultaneamente, como cliente e servidor. Afinal, ao estudarmos sobre o tema, nem sempre temos acesso a diferentes computadores que nos
 							possibilitem realmente perceber como uma invocação remota se comporta, incluindo seu tempo de execução e sua tolerânica a falhas.</P>
 							<p class="paragraphText"><span class="spaceTab"></span>Com estes princípios em mente, utilizaremos esta seção para submeter duas máquinas (conectadas 
-							à mesma rede local) a chamadas RMI, a fim de examinar o comportamento do sistema como um todo e observar suas respostas a certas situações adversas.</p>
+							à mesma rede sem fio local) a chamadas RMI, a fim de examinar o comportamento do sistema como um todo e observar suas respostas a certas situações adversas.</p>
 							<div class="4u 6u(3) centerImage size1"><span class=" image fit"><img src="images/computadores.png" class="" alt="" /></span></div>
 							<br>
 							
@@ -119,11 +113,136 @@
 									</tbody>
 								</table>
 							</div>
+							
+							<p class="paragraphText"><span class="spaceTab"></span>Tendo em vista que, durante todo o processo de invocação, a utilização de CPU em ambas as máquinas
+							permanece bastante baixa (variando em torno de 4% no servidor - convidamos o leitor a repetir o experimento e averiguar), podemos concluir que o gargalo 
+							de nosso sistema RMI, neste caso, é a largura de banda. De fato, ao passarmos como argumento um <i>array</i> de 40 MB (como no último registro da tabela), teremos um tráfego de
+							dados total equivalente a 80 MB (levando em conta a ida de uma cópia do <i>array</i> para o servidor e sua posterior volta, já modificado, para o cliente).</p>
+							<p class="paragraphText"><span class="spaceTab"></span>Este experimento nos mostra que, ao distribuirmos nosso processamento, precisamos levar em conta os diferentes
+							espaços de endereçamento de cada máquina. Para efeitos de comparação, uma simples soma de offset de complexidade O(n) em um <i>array</i> de 40 MB, se feita localmente em um computador moderno, não leva
+							mais de 10% do tempo registrado na última linha da tabela (novamente, convidamos o leitor a averiguar). Além disso, existem técnicas para acessos a endereços de memória sequenciais
+							(e.g. memória <i>cache</i>) que agilizam imensamente o processo quando realizado localmente. Portanto, a decisão de distribuir o processamento deve levar em conta diversos fatores, não
+							se restringindo apenas à disponibilidade de recursos.</p>
+							
+							<h3>Tolerância a Falhas</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Para estes experimentos, nosso objetivo foi observer como o RMI reage a alguns erros que podem ocorrer durante
+							sua utilização. Primeiramente, foi tentado remover a conexão de rede sem fio por diferentes intervalos de tempo durante a execução da chamada. Para tal, apenas utilizamos o atalho do teclado para habilitar
+							e desabilitar a conexão do servidor, como pode ser observado na imagem abaixo:</p>
+							<div class="4u 6u(3) centerImage size1"><span class=" image fit"><img src="images/internet.png" class="" alt="" /></span></div>
+							<br>
+							<p class="paragraphText"><span class="spaceTab"></span>Foi possível observar resultados diversos. Cronometramos inicialmente 5 segundos entre a remoção da conexão até seu restabelecimento. Para
+							um array com 1.000.000 elementos do tipo <i>float</i>, sendo passado como argumento para a invocação de "somar <i>offset</i>", foi possível observar:
+							
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Intervalo sem conexão (segundos)</th>
+											<th>Invocações bem-sucedidas (total de 5)</th>
+											<th>Média das invocações bem-sucedidas (segundos)</th>
+											<th>Desvio Padrão (segundos)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>3 &plusmn; 2</td>
+											<td>5</td>
+											<td>18,28779</td>
+											<td>0,97279</td>
+										</tr>
+										<tr>
+											<td>5 &plusmn; 2</td>
+											<td>4</td>
+											<td>19,60036</td>
+											<td>1,03307</td>
+										</tr>
+										<tr>
+											<td>7 &plusmn; 2</td>
+											<td>5</td>
+											<td>24,14289</td>
+											<td>2,02709</td>
+										</tr>
+										<tr>
+											<td>9 &plusmn; 2</td>
+											<td>5</td>
+											<td>25,04582</td>
+											<td>3,57361</td>
+										</tr>
+										<tr>
+											<td>11 &plusmn; 2</td>
+											<td>5</td>
+											<td>30,03137</td>
+											<td>4,11127</td>
+										</tr>
+										<tr>
+											<td>13 &plusmn; 2</td>
+											<td>5</td>
+											<td>33,77045</td>
+											<td>4,80847</td>
+										</tr>
+										<tr>
+											<td>15 &plusmn; 2</td>
+											<td>4</td>
+											<td>37,73766</td>
+											<td>2,54372</td>
+										</tr>
+										<tr>
+											<td>17 &plusmn; 2</td>
+											<td>5</td>
+											<td>41,46283</td>
+											<td>7,13920</td>
+										</tr>
+										<tr>
+											<td>19 &plusmn; 2</td>
+											<td>4</td>
+											<td>39,52466</td>
+											<td>2,37662</td>
+										</tr>
+										<tr>
+											<td>21 &plusmn; 2</td>
+											<td>3</td>
+											<td>37,29614</td>
+											<td>0,69318</td>
+										</tr>
+										<tr>
+											<td>23 &plusmn; 2</td>
+											<td>3</td>
+											<td>46,30076</td>
+											<td>15,31812</td>
+										</tr>
+										<tr>
+											<td>25 &plusmn; 2</td>
+											<td>2</td>
+											<td>38,34023</td>
+											<td>0,37112</td>
+										</tr>
+									</tbody>
+									
+								</table>
+								
+								<p class="paragraphText"><span class="spaceTab"></span>Quando uma invocação falhava, uma exceção era gerada. Os dois tipos de exceções encontrados
+								durante a execução dos testes foram:</p>
+								<ul class="listItems">
+									<li><i>java.rmi.UnmarshalException: Error unmarshaling return header; nested exception is: 
+										<br>&nbsp;&nbsp;&nbsp;java.net.SocketTimeoutException: Read timed out</i></li>
+									<li><i>java.rmi.MarshalException: error marshalling arguments; nested exception is:
+										<br>&nbsp;&nbsp;&nbsp;java.net.SocketException: Connection reset by peer: socket write error</i></li>
+								</ul>
+								<p class="paragraphText"><span class="spaceTab"></span>De acordo com o experimento acima, não foi possível determinar o intervalo de tempo aproximado após o qual
+								o sistema RMI considera a perda total da comunicação e lança uma exceção. No entanto, observamos que, para intervalos maiores, o número de exceções aumenta (pois
+								a quantidade de invocações bem-sucedidas diminui). A tabela nos mostra que o sistema RMI conseguiu se recuperar diversas vezes de falhas de comunicação bastante severas 
+								(maiores que 20 segundos), algo relativamente surpreendente.</p>
+								<p class="paragraphText"><span class="spaceTab"></span>Nos casos em que ocorreram exceções, é necessário lembrar que a semântica do RMI é "<i>no-máximo-uma vez</i>". Isto
+								significa que, ao recebermos uma exceção, temos a certeza de que o servidor processou a invocação ou uma vez ou nenhuma vez. Podemos criar programas que implementem outras
+								semânticas como, por exemplo, "<i>pelo-menos-uma-vez</i>". Para tal, ao recebermos uma exceção, basta repetirmos a chamada quantas vezes forem necessárias até que uma resposta
+								de sucesso seja encontrada. Note que semânticas do tipo <i>"exatamente-uma vez"</i> são bem mais sofisticadas de um ponto de vista arquitetural, devido ao fato de não haver
+								uma solução trivial para garantir exatamente um único processamento.</p>
+								<p class="paragraphText"><span class="spaceTab"></span>Assim, concluímos nossos breves experimentos acerca do sistema RMI, podendo agora entender um pouco melhor como seu
+								funcionamento ocorre na prática e quais adversidades podem trazer problemas para nossos planejamentos.</p>
+							</div>
 						</section>
-
 				</div>
 			</section>
-
 
 
 		<!-- Footer -->
