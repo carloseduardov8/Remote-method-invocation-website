@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>RMI - Remote Method Invocation</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<link rel="stylesheet" href="css/no-footbar.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="index.html">Remote Method Invocation &nbsp&nbsp<span>GTA - UFRJ</span></a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Início</a></li>
+						<li><a href="mundo_distribuido.html">Um Mundo Distribuído</a></li>
+						<li><a href="o_que_e.html">O Que É RMI?</a></li>
+						<li><a href="rmi_x_rpc.html">RMI x RPC</a></li>
+						<li><a href="arquitetura.html">Arquitetura</a></li>
+						<li><a href="experimentos.html">Experimentos</a></li>
+						<li><a href="questoes.html">Questões</a></li>
+						<li><a href="bibliografia.html">Bibliografia</a></li>
+					</ul>
+				</nav>
+			</header>
+			
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+					<h2>Questões</h2>
+					<p>Perguntas e respostas elaboradas para treinar o conhecimento</p>
+				</header>
+				<div class="container">
+						
+					<!-- Content -->
+						<section id="content">
+							<a href="#" class="image fit"><img src="images/questions2.jpg" alt="" class="headerImage"/></a>
+							<h3>O que é um sistema distribuído?</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Extraindo a definição do livro "Distributed Systems - Principles and Paradigms", de Andrew Tanenbaum, temos:</p>
+							<div class="quoteLine size1">"Um sistema distribuído é uma coleção de computadores independentes que aparecem para seus usuários
+							como um único sistema coerente."</div>
+							<p class="paragraphText"><span class="spaceTab"></span>Esta definição captura o espírito com o qual o RMI foi pensado: chamadas cujas características remotas são abstraídas para o usuário, 
+							se comportando como se o processamento tivesse ocorrido localmente.</p>
+							
+							<h3>Quais as principais diferenças entre RPC e RMI?</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Indo direto ao ponto, o RPC funciona sob o paradigma funcional, enquanto o RMI opera sob o paradigma de orientação a objetos. 
+							Isto é, o RPC trabalha com funções, enquanto o RMI vive de métodos pertencentes a objetos. Além disso, o RPC é baseado em C (herdando sua estruturação básica), enquanto o RMI foi desenvolvido
+							para a linguagem Java.</p>
+							
+							<h3>Quais as principais semelhanças entre RPC e RMI?</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Ambos trabalham com uma interface (componentes de baixo nível são inferiores ao programador) e as chamadas remotas de ambos os modelos possuem
+							sintaxe semelhante a chamadas locais.</p>
+							
+							<h3>Qual a semântica nativa ao RMI e o que ela significa?</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>A semântica nativa ao RMI é a de "<i>no-máximo-uma vez</i>". Isto significa que, quando uma invocação remota é realizada, caso ocorra um erro
+							(exceção), há garantia de que a invocação, no lado do servidor, tenha ocorrido ou uma vez ou nenhuma vez. Isto se deve ao fato de ser bastante difícil executar uma garantia do tipo
+							"<i>exatamente-uma vez</i>", sendo necessário construir nosso próprio sistema em cima do RMI caso queiramos uma semântica deste tipo.</p>
+							
+							<h3>Por que uma mesma invocação remota pode demorar mais para diferentes <i>arrays</i> do mesmo tipo?</h3>
+							<p class="paragraphText"><span class="spaceTab"></span>Ao realizarmos a invocação, uma cópia dos parâmetros (objetos) é enviada para o servidor. Portanto, <i>arrays</i> de tamanhos diferentes
+							precisam trafegar pela rede, um processo muito mais lento do que simples acessos locais à memória. Além disso, podemos também apontar que, no servidor, o tempo de executar a invocação poderá ser dependente do
+							tamanho do <i>array</i> de acordo com a complexidade dos algoritmos envolvidos.</p>
+							
+						</section>
+								
+				</div>
+			</section>	
+			
+			
+			
+		<!-- Footer -->
+			<footer id="footer">
+
+				<span class="copyright">
+						&copy; Copyright. Todos os direitos reservados. Template por <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
+				</span>
+			</footer>
+
+	</body>
+</html>
