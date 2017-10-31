@@ -1,0 +1,561 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>RMI - Remote Method Invocation</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.slidertron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+		<link rel="stylesheet" href="css/no-footbar.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="index.html">Remote Method Invocation &nbsp&nbsp<span>GTA - UFRJ</span></a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Início</a></li>
+						<li><a href="mundo_distribuido.html">Um Mundo Distribuído</a></li>
+						<li><a href="o_que_e.html">O Que É RMI?</a></li>
+						<li><a href="rmi_x_rpc.html">RMI x RPC</a></li>
+						<li><a href="arquitetura.html">Arquitetura</a></li>
+						<li>
+							<a href="" class="icon fa-angle-down">Experimentos</a>
+							<ul>
+								<li><a href="codigo.html">Código-fonte</a></li>
+								<li><a href="experimentos.html">Resultados</a></li>
+							</ul>
+						</li>
+						<li><a href="questoes.html">Questões</a></li>
+						<li><a href="bibliografia.html">Bibliografia</a></li>
+					</ul>
+				</nav>
+			</header>
+			
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+					<h2>Código-fonte</h2>
+					<p>Classes utilizadas para a realização dos experimentos</p>
+				</header>
+				<div class="container">
+						
+					<!-- Content -->
+						<section id="content">
+							<a href="#" class="image fit"><img src="images/source_code.png" alt="" class="headerImage"/></a>
+													
+								<h3>Instruções de Compilação em Linux</h3>
+								<p class="paragraphText"><span class="spaceTab"></span>Em seu terminal, vá para local/da/pasta/ e execute <code>javac -d build/classes src/rmi/*.java</code> para
+								compilar as classes Java. Para obter a stub do ServiceImple, vá para local/da/pasta/build/classes/ e execute <code>rmic rmi.ServiceImple</code>. Quando quiser
+								executar o servidor, basta ir para local/da/pasta/build/classes/ e executar <code>java rmi.Server</code>. O cliente encontra-se neste mesmo local, sendo necessário
+								executar <code>java rmi.Client</code> para iniciá-lo.</p>
+													
+								<h3>Service.java</h3>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> rmi<span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.Remote</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.RemoteException</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.List</span><span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">interface</span> <span style="color: #BB0066; font-weight: bold">Service</span> <span style="color: #008800; font-weight: bold">extends</span> Remote <span style="color: #333333">{</span>
+
+    <span style="color: #888888">//Type 1 functions:</span>
+    
+    <span style="color: #888888">//Returns vector with elements powered to the pot-th:</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> <span style="color: #0066BB; font-weight: bold">power</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> pot<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException<span style="color: #333333">;</span>
+    <span style="color: #888888">//Return log in parameter base of all elements in vector:</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> <span style="color: #0066BB; font-weight: bold">log</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> base<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException<span style="color: #333333">;</span>
+    <span style="color: #888888">//Adds an offset to all elements in vector:</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> <span style="color: #0066BB; font-weight: bold">addOffset</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> offset<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException<span style="color: #333333">;</span>
+    
+    <span style="color: #888888">//Type 2 functions:</span>
+    
+    <span style="color: #888888">//Function that return arithmetic mean of vector:</span>
+    <span style="color: #008800; font-weight: bold">public</span> Double <span style="color: #0066BB; font-weight: bold">mean</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException<span style="color: #333333">;</span>
+    <span style="color: #888888">//Return how many elements are bigger than pivot:</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">biggerThan</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">double</span> pivot<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException<span style="color: #333333">;</span>
+    <span style="color: #888888">//Return closest element in value to pivot:</span>
+    <span style="color: #008800; font-weight: bold">public</span> Double <span style="color: #0066BB; font-weight: bold">closestTo</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">double</span> pivot<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException<span style="color: #333333">;</span>
+<span style="color: #333333">}</span>
+</pre></td></tr></table></div>
+
+
+						<br>
+						<h3>ServiceImple.java</h3>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> rmi<span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.RemoteException</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.server.UnicastRemoteObject</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.List</span><span style="color: #333333">;</span>
+
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ServiceImple</span> <span style="color: #008800; font-weight: bold">extends</span> UnicastRemoteObject <span style="color: #008800; font-weight: bold">implements</span> Service<span style="color: #333333">{</span>
+    
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">long</span> serialVersionUID <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1L</span><span style="color: #333333">;</span>
+    
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #0066BB; font-weight: bold">ServiceImple</span><span style="color: #333333">()</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> <span style="color: #0066BB; font-weight: bold">power</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> pot<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>vSize<span style="color: #333333">;</span> i<span style="color: #333333">=</span>i<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">){</span>
+            vetor<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">=</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">)</span> Math<span style="color: #333333">.</span><span style="color: #0000CC">pow</span><span style="color: #333333">(</span>vetor<span style="color: #333333">[</span>i<span style="color: #333333">],</span> pot<span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> vetor<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> <span style="color: #0066BB; font-weight: bold">log</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> base<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>vSize<span style="color: #333333">;</span> i<span style="color: #333333">=</span>i<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">){</span>
+            vetor<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">=</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">)</span> <span style="color: #333333">(</span>Math<span style="color: #333333">.</span><span style="color: #0000CC">log</span><span style="color: #333333">(</span>vetor<span style="color: #333333">[</span>i<span style="color: #333333">])/</span>Math<span style="color: #333333">.</span><span style="color: #0000CC">log</span><span style="color: #333333">(</span>base<span style="color: #333333">));</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> vetor<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> <span style="color: #0066BB; font-weight: bold">addOffset</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> offset<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>vSize<span style="color: #333333">;</span> i<span style="color: #333333">=</span>i<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">){</span>
+            vetor<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">=</span> vetor<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">+</span> offset<span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> vetor<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> Double <span style="color: #0066BB; font-weight: bold">mean</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #333399; font-weight: bold">double</span> mediaParcial <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>vSize<span style="color: #333333">;</span> i<span style="color: #333333">=</span>i<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">){</span>
+            mediaParcial <span style="color: #333333">+=</span> vetor<span style="color: #333333">[</span>i<span style="color: #333333">];</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> mediaParcial<span style="color: #333333">/</span>vSize<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> <span style="color: #0066BB; font-weight: bold">biggerThan</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">double</span> pivot<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #333399; font-weight: bold">int</span> count <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>vSize<span style="color: #333333">;</span> i<span style="color: #333333">=</span>i<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">){</span>
+            <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>vetor<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">&gt;</span> pivot<span style="color: #333333">){</span>
+                count<span style="color: #333333">++;</span>
+            <span style="color: #333333">}</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> count<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> Double <span style="color: #0066BB; font-weight: bold">closestTo</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">double</span> pivot<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> RemoteException <span style="color: #333333">{</span>
+        <span style="color: #333399; font-weight: bold">double</span> bestFind <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>vSize<span style="color: #333333">;</span> i<span style="color: #333333">=</span>i<span style="color: #333333">+</span><span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">){</span>
+            <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>Math<span style="color: #333333">.</span><span style="color: #0000CC">abs</span><span style="color: #333333">(</span>vetor<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">-</span> pivot<span style="color: #333333">)</span> <span style="color: #333333">&lt;</span> Math<span style="color: #333333">.</span><span style="color: #0000CC">abs</span><span style="color: #333333">(</span>bestFind<span style="color: #333333">-</span>pivot<span style="color: #333333">)){</span>
+                bestFind <span style="color: #333333">=</span> vetor<span style="color: #333333">[</span>i<span style="color: #333333">];</span>
+            <span style="color: #333333">}</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> bestFind<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></td></tr></table></div>
+
+
+						<br>
+						<h3>Server.java</h3>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> rmi<span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.Naming</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.Remote</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.registry.LocateRegistry</span><span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Server</span> <span style="color: #333333">{</span>
+
+    Server<span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+            System<span style="color: #333333">.</span><span style="color: #0000CC">setProperty</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;java.rmi.server.hostname&quot;</span><span style="color: #333333">,</span> <span style="background-color: #fff0f0">&quot;localhost&quot;</span><span style="color: #333333">);</span>
+            LocateRegistry<span style="color: #333333">.</span><span style="color: #0000CC">createRegistry</span><span style="color: #333333">(</span><span style="color: #0000DD; font-weight: bold">1099</span><span style="color: #333333">);</span>
+            Service s <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ServiceImple<span style="color: #333333">();</span>
+            Naming<span style="color: #333333">.</span><span style="color: #0000CC">bind</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Servico&quot;</span><span style="color: #333333">,</span> <span style="color: #333333">(</span>Remote<span style="color: #333333">)</span> s<span style="color: #333333">);</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>Exception e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            e<span style="color: #333333">.</span><span style="color: #0000CC">printStackTrace</span><span style="color: #333333">();</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">){</span>
+        <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">Server</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></td></tr></table></div>
+
+						<br>
+						<h3>Client.java</h3>
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> rmi<span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.rmi.Naming</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.ArrayList</span><span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Client</span> <span style="color: #333333">{</span>
+
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">int</span> N <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1000000</span><span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">int</span> K <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">int</span> iterations <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">;</span>
+
+
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #008800; font-weight: bold">throws</span> InterruptedException <span style="color: #333333">{</span>
+
+        <span style="color: #888888">//Variable to hold current pseudo-random number:</span>
+        <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">int</span> a <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">25173</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">int</span> b <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">13849</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">final</span> <span style="color: #333399; font-weight: bold">int</span> m <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">3276</span><span style="color: #333333">;</span>
+
+        <span style="color: #333399; font-weight: bold">int</span> x <span style="color: #333333">=</span> m<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">2</span><span style="color: #333333">;</span>
+
+        <span style="color: #888888">//Create a list of lists:</span>
+        ArrayList<span style="color: #333333">&lt;</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]&gt;</span> vetor <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ArrayList<span style="color: #333333">&lt;&gt;();</span>
+		ArrayList<span style="color: #333333">&lt;</span>Long<span style="color: #333333">&gt;</span> tempos <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ArrayList<span style="color: #333333">&lt;&gt;();</span>
+
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>K<span style="color: #333333">;</span> i<span style="color: #333333">++){</span>
+            vetor<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[</span>N<span style="color: #333333">/</span>K<span style="color: #333333">]);</span>
+            <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> j<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> j<span style="color: #333333">&lt;</span>N<span style="color: #333333">/</span>K<span style="color: #333333">;</span> j<span style="color: #333333">++){</span>
+                x <span style="color: #333333">=</span> <span style="color: #333333">(</span>a <span style="color: #333333">*</span> x <span style="color: #333333">+</span> b<span style="color: #333333">)</span> <span style="color: #333333">%</span> m<span style="color: #333333">;</span>
+                vetor<span style="color: #333333">.</span><span style="color: #0000CC">get</span><span style="color: #333333">(</span>i<span style="color: #333333">)[</span>j<span style="color: #333333">]</span> <span style="color: #333333">=</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">)</span> x<span style="color: #333333">/</span>m<span style="color: #333333">;</span>
+            <span style="color: #333333">}</span>
+        <span style="color: #333333">}</span>
+
+        <span style="color: #333399; font-weight: bold">long</span> startTime <span style="color: #333333">=</span> System<span style="color: #333333">.</span><span style="color: #0000CC">nanoTime</span><span style="color: #333333">();</span>
+		<span style="color: #333399; font-weight: bold">long</span> totalTime <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span>
+
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> count<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> count<span style="color: #333333">&lt;</span>iterations<span style="color: #333333">;</span> count<span style="color: #333333">++){</span>
+
+            <span style="color: #888888">//Creates the list of threads:</span>
+            ArrayList<span style="color: #333333">&lt;</span>ClientThread<span style="color: #333333">&gt;</span> threads <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ArrayList<span style="color: #333333">&lt;&gt;();</span>
+
+            <span style="color: #888888">//Starts the threads</span>
+            <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>K<span style="color: #333333">;</span> i<span style="color: #333333">++){</span>
+                threads<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">new</span> ClientThread<span style="color: #333333">(</span>vetor<span style="color: #333333">.</span><span style="color: #0000CC">get</span><span style="color: #333333">(</span>i<span style="color: #333333">),</span> N<span style="color: #333333">/</span>K<span style="color: #333333">));</span>
+                threads<span style="color: #333333">.</span><span style="color: #0000CC">get</span><span style="color: #333333">(</span>i<span style="color: #333333">).</span><span style="color: #0000CC">start</span><span style="color: #333333">();</span>
+            <span style="color: #333333">}</span>
+
+            <span style="color: #888888">//Waits for threads to end:</span>
+            <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>K<span style="color: #333333">;</span> i<span style="color: #333333">++){</span>
+                threads<span style="color: #333333">.</span><span style="color: #0000CC">get</span><span style="color: #333333">(</span>i<span style="color: #333333">).</span><span style="color: #0000CC">join</span><span style="color: #333333">();</span>
+            <span style="color: #333333">}</span>
+			
+			tempos<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">((</span>Long<span style="color: #333333">)</span> System<span style="color: #333333">.</span><span style="color: #0000CC">nanoTime</span><span style="color: #333333">()</span> <span style="color: #333333">-</span> startTime <span style="color: #333333">-</span> totalTime<span style="color: #333333">);</span>
+			totalTime <span style="color: #333333">=</span> System<span style="color: #333333">.</span><span style="color: #0000CC">nanoTime</span><span style="color: #333333">()</span> <span style="color: #333333">-</span> startTime<span style="color: #333333">;</span>
+
+        <span style="color: #333333">}</span>
+
+        <span style="color: #333399; font-weight: bold">long</span> estimatedTime <span style="color: #333333">=</span> System<span style="color: #333333">.</span><span style="color: #0000CC">nanoTime</span><span style="color: #333333">()</span> <span style="color: #333333">-</span> startTime<span style="color: #333333">;</span>
+
+        estimatedTime <span style="color: #333333">/=</span> iterations<span style="color: #333333">;</span>
+
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Each loop took: &quot;</span><span style="color: #333333">+(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">)</span>estimatedTime<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">1000000000</span><span style="color: #333333">);</span>
+		<span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">long</span> <span style="color: #997700; font-weight: bold">tempo:</span> tempos<span style="color: #333333">){</span>
+			System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">((</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">)</span>tempo<span style="color: #333333">/</span><span style="color: #0000DD; font-weight: bold">1000000000</span><span style="color: #333333">);</span>
+		<span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+
+<span style="color: #333333">}</span>
+
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ClientThread</span> <span style="color: #008800; font-weight: bold">extends</span> Thread<span style="color: #333333">{</span>
+
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetor<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">int</span> vSize<span style="color: #333333">;</span>
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ClientThread</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[]</span> vetorArg<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> initSize<span style="color: #333333">){</span>
+        vetor <span style="color: #333333">=</span> vetorArg<span style="color: #333333">;</span>
+        vSize <span style="color: #333333">=</span> initSize<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">run</span><span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+            Service s <span style="color: #333333">=</span> <span style="color: #333333">(</span>Service<span style="color: #333333">)</span> Naming<span style="color: #333333">.</span><span style="color: #0000CC">lookup</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;rmi://localhost:1099/Servico&quot;</span><span style="color: #333333">);</span>
+
+
+
+
+            <span style="color: #888888">//Calculates power in RMI:</span>
+            <span style="color: #888888">//vetor = (float[]) s.power(vetor, vSize, 2);</span>
+
+            <span style="color: #888888">//Calculates log in RMI:</span>
+            <span style="color: #888888">//vetor = (float[]) s.log(vetor, vSize, 2);</span>
+
+            <span style="color: #888888">//Adds an offset in RMI:</span>
+            vetor <span style="color: #333333">=</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">float</span><span style="color: #333333">[])</span> s<span style="color: #333333">.</span><span style="color: #0000CC">addOffset</span><span style="color: #333333">(</span>vetor<span style="color: #333333">,</span> vSize<span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">100</span><span style="color: #333333">);</span>
+
+            <span style="color: #888888">//Calculates mean in RMI:</span>
+            <span style="color: #888888">//s.mean(vetor, vSize);</span>
+
+            <span style="color: #888888">//Counts how many are bigger in RMI:</span>
+            <span style="color: #888888">//s.biggerThan(vetor, vSize, 1500);</span>
+
+            <span style="color: #888888">//Finds closes element in RMI:</span>
+            <span style="color: #888888">//s.closestTo(vetor, vSize, 1234);</span>
+
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>Exception e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            e<span style="color: #333333">.</span><span style="color: #0000CC">printStackTrace</span><span style="color: #333333">();</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></td></tr></table></div>
+							
+						</section>
+								
+				</div>
+			</section>	
+			
+			
+			
+		<!-- Footer -->
+			<footer id="footer">
+
+				<span class="copyright">
+						&copy; Copyright. Todos os direitos reservados. Template por <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a>
+				</span>
+			</footer>
+
+	</body>
+</html>
